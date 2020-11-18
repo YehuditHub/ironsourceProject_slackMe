@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>login</title>
+</head>
+    <body>
+        <form>
+            <input type="submit" value="post messag" formaction="/post" formmethod="post" />
+            <input type="text" name="message" placeholder="your message">
+            <select name="channel" id="slctCannel" >
+                <option></option>
+            </select>
+            <!-- <input type="text" name="channel" placeholder="channel"><br> -->
+            <input type="submit" value="get all messages" formaction="/get" formmethod="get" />
+        </form>
+        <script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.4.js" type="text/javascript"></script>
+        <script>
+            function load() {
+                $.ajax({
+                    url: "/getConversatins",
+                    type: "get",
+                    success: function (dataFromNodeServer) {
+                            var data = JSON.parse(dataFromNodeServer).data;
+                            document.getElementById("slctCannel").innerHTML = "";
+                            for (let c of data.channels) {
+                                var item = document.createElement("option");
+                                item.innerHTML = c.id+" | "+c.name;
+                                item.value=c.id;
+                                document.getElementById("slctCannel").appendChild(item);
+                            }
+                    },
+                    error: function (err) {
+                        alert(err);
+                        }
+                    });
+                };
+
+                load();
+        </script>
+    </body>
+</html>

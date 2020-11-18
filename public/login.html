@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>login</title>
+    <style>
+        body{
+            text-align: center;
+            width: 100%;
+            background-color: gray;
+        }
+        form{
+            width: 40%;
+            margin: auto;
+            margin-top: 10%;
+            padding: 5%;
+            background-color: #e4e4e4d1;
+        }
+        #btn{
+            width: 100%;
+        }
+        #tkn{
+            width: 99%;
+            text-align: center;
+        }
+        input{
+            border: none;
+            padding-top:3%; 
+            padding-bottom: 3%;
+        }
+    </style>
+</head>
+    <body>        
+        <form>
+             <input name="token" type="text" width="50%" id="tkn" placeholder="Access Token" onkeyup="manage(this)"/> <br><br>
+            <input type="submit" value="sendData" formaction="/login" formmethod="post" disabled id="btn"/>
+        </form>
+        <script>
+                function manage(txt) {
+                    var btn = document.getElementById('btn');
+                    if (txt.value != '') {
+                        btn.disabled = false;
+                    }
+                    else {
+                        btn.disabled = true;
+                    }
+                }
+        </script>
+    </body>
+</html>
