@@ -31,8 +31,10 @@ app.post('/post', (req, res) => {
 
 
 
-app.get('/get', (req, res) => {
-    slack.api('conversations.history', { token: currToken, channel:'C01ER63SXM3'},
+app.post('/get', (req, res) => {
+    let currChannel = req.body.channel;
+    console.log(currChannel);
+    slack.api('conversations.history', { token: currToken, channel:currChannel},
     function(err, data){
         console.log("get!")
         console.log(data);
